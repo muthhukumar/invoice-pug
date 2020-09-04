@@ -1,0 +1,87 @@
+extends layout
+
+mixin productDetail(product)
+    tr
+        td= product.name
+        td= product.cost
+        td= product.quantity
+        td= product.amount
+
+block content
+    div.container
+        header.container__header
+            h1 INVOICE 
+            div.container__detail
+                pre. 
+                    support@actyv.com
+                    www.actyv.com
+                pre.
+                    776, Srinivagilu Main Rd,
+                    Koramangala 4th Block,
+                    Koramangala, Bengaluru,
+                    Karnataka 560034
+        div.container__body
+            div.container__customerdetails
+                div.container__billto
+                    h3 Billed to
+                    div #{payload.customerDetails.name },
+                    div #{payload.customerDetails.area},
+                    div #{payload.customerDetails.city },
+                    div #{payload.customerDetails.state },
+                    div #{payload.customerDetails.country }.
+                div.container__billdetails
+                    div
+                        h3 Invoice Number
+                        p #{payload.invoiceNumber}
+                        br
+
+                        h3 Date of Issue
+                        time #{payload.dateofissue}
+                        br
+            div.container__invoicetotal
+                h3 Invoice total
+                p $4000.00
+                
+        div.container__description
+            table
+                    tr
+                        th Description
+                        th Unit Cost
+                        th Qty/ Hr Rate 
+                        th Amount
+
+                    each product in payload.items
+                        +productDetail(product)
+
+        table.container__footer
+            tr
+                td
+                    h3 Subtotal 
+                td
+                    p ₹#{payload.subtotal}
+            tr
+                td
+                    h3 Tax   
+                td
+                    p ₹#{payload.tax}
+            tr
+                td
+                    h3 Total      
+                td
+                    p ₹#{payload.invoiceTotal}
+
+            tr
+                td
+                    h2 Amout Due(INR)      
+                td
+                    p ₹#{payload.amountDue}
+
+
+
+
+
+                    
+
+
+
+                
