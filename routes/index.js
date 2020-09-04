@@ -27,7 +27,7 @@ const payload = {
 
 /* GET home page. */
 router.get("/", function (req, res, next) {
-  res.render("invoice", { payload });
+  res.render("invoice", { title: "Invoice", payload });
 });
 
 module.exports = router;
